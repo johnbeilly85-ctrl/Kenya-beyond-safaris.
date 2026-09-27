@@ -1,0 +1,660 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  }
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+background: #fbfaf6;
+color: #1d2b23;
+line-height: 1.6;
+}
+
+/* ================= HEADER ================= */
+
+.site-header {
+height: 76px;
+background: #ffffff;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 6%;
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+text-decoration: none;
+color: #173d2b;
+font-size: 1.1rem;
+font-weight: 900;
+letter-spacing: 1.5px;
+}
+
+.logo span {
+color: #b57b25;
+}
+
+.navigation {
+display: flex;
+gap: 30px;
+align-items: center;
+}
+
+.navigation a {
+text-decoration: none;
+color: #26362d;
+font-size: 0.95rem;
+font-weight: 700;
+transition: 0.2s;
+}
+
+.navigation a:hover,
+.navigation a.active {
+color: #b57b25;
+}
+
+.menu-toggle {
+display: none;
+border: none;
+background: transparent;
+color: #173d2b;
+font-size: 1.7rem;
+cursor: pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+min-height: 690px;
+position: relative;
+display: flex;
+align-items: center;
+padding: 80px 8%;
+
+background-image:
+url("https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=2000&q=85");
+
+background-size: cover;
+background-position: center;
+}
+
+.hero-overlay {
+position: absolute;
+inset: 0;
+
+background:
+linear-gradient(
+90deg,
+rgba(11, 40, 27, 0.90),
+rgba(11, 40, 27, 0.35)
+);
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+max-width: 720px;
+color: white;
+}
+
+.eyebrow {
+color: #b57b25;
+font-size: 0.78rem;
+font-weight: 800;
+letter-spacing: 2.2px;
+margin-bottom: 12px;
+}
+
+.hero h1 {
+font-size: clamp(2.8rem, 7vw, 5.6rem);
+line-height: 1.02;
+letter-spacing: -2px;
+margin-bottom: 24px;
+}
+
+.hero-text {
+max-width: 650px;
+font-size: 1.18rem;
+color: #f1f3ef;
+}
+
+.hero-buttons {
+display: flex;
+gap: 14px;
+flex-wrap: wrap;
+margin-top: 32px;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn {
+display: inline-block;
+padding: 14px 25px;
+border-radius: 4px;
+text-decoration: none;
+font-weight: 800;
+border: 2px solid transparent;
+transition: 0.2s;
+}
+
+.btn-primary {
+background: #b57b25;
+color: white;
+}
+
+.btn-primary:hover {
+background: #95651d;
+}
+
+.btn-secondary {
+background: white;
+color: #173d2b;
+}
+
+.btn-secondary:hover {
+background: #eeeae0;
+}
+
+.btn-light {
+background: white;
+color: #173d2b;
+}
+
+.btn-light:hover {
+background: #eeeae0;
+}
+
+/* ================= GENERAL SECTIONS ================= */
+
+.section {
+max-width: 1400px;
+margin: auto;
+padding: 90px 7%;
+}
+
+.section h2 {
+color: #173d2b;
+font-size: clamp(2rem, 4vw, 3.2rem);
+line-height: 1.12;
+margin-bottom: 20px;
+}
+
+.section-heading {
+display: flex;
+justify-content: space-between;
+align-items: end;
+gap: 30px;
+margin-bottom: 35px;
+}
+
+.view-link {
+color: #a76f20;
+text-decoration: none;
+font-weight: 800;
+}
+
+/* ================= INTRO ================= */
+
+.intro {
+display: grid;
+grid-template-columns: 1fr 1.2fr;
+gap: 70px;
+align-items: start;
+}
+
+.intro-text {
+color: #59645e;
+font-size: 1.12rem;
+}
+
+.intro-text p {
+margin-bottom: 18px;
+}
+
+/* ================= EXPERIENCE CARDS ================= */
+
+.experience-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 25px;
+}
+
+.experience-card {
+background: white;
+overflow: hidden;
+box-shadow: 0 8px 30px rgba(25, 45, 34, 0.08);
+transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.experience-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 14px 35px rgba(25, 45, 34, 0.14);
+}
+
+.experience-image {
+height: 250px;
+background-position: center;
+background-size: cover;
+}
+
+.mara-image {
+background-image:
+url("https://images.unsplash.com/photo-1535338454770-8be927b5a00b?auto=format&fit=crop&w=1000&q=85");
+}
+
+.amboseli-image {
+background-image:
+url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1000&q=85");
+}
+
+.coast-image {
+background-image:
+url("https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1000&q=85");
+}
+
+.experience-content {
+padding: 25px;
+}
+
+.card-label {
+color: #b57b25;
+font-size: 0.7rem;
+font-weight: 900;
+letter-spacing: 1.5px;
+}
+
+.experience-content h3 {
+color: #173d2b;
+font-size: 1.4rem;
+margin: 8px 0;
+}
+
+.experience-content p {
+color: #69746e;
+margin-bottom: 18px;
+}
+
+.experience-content a {
+color: #a76f20;
+text-decoration: none;
+font-weight: 800;
+}
+
+/* ================= WHY US ================= */
+
+.why-us {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 70px;
+align-items: center;
+}
+
+.why-image {
+min-height: 520px;
+
+background-image:
+url("https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=85");
+
+background-position: center;
+background-size: cover;
+}
+
+.why-content > p:not(.eyebrow) {
+color: #59645e;
+font-size: 1.05rem;
+}
+
+.benefits {
+list-style: none;
+margin: 28px 0;
+}
+
+.benefits li {
+display: flex;
+flex-direction: column;
+margin-bottom: 17px;
+padding-left: 28px;
+position: relative;
+}
+
+.benefits li::before {
+content: "✓";
+position: absolute;
+left: 0;
+top: 0;
+color: #b57b25;
+font-weight: 900;
+}
+
+.benefits strong {
+color: #173d2b;
+}
+
+.benefits span {
+color: #68736d;
+}
+
+/* ================= DESTINATIONS ================= */
+
+.destination-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 20px;
+}
+
+.destination-card {
+height: 350px;
+display: flex;
+align-items: end;
+padding: 22px;
+position: relative;
+overflow: hidden;
+
+background-position: center;
+background-size: cover;
+
+transition: transform 0.25s;
+}
+
+.destination-card:hover {
+transform: translateY(-5px);
+}
+
+.destination-card::after {
+content: "";
+position: absolute;
+inset: 0;
+
+background:
+linear-gradient(
+transparent 40%,
+rgba(0, 0, 0, 0.75)
+);
+}
+
+.destination-card span {
+position: relative;
+z-index: 2;
+
+color: white;
+font-size: 1.35rem;
+font-weight: 800;
+}
+
+.nakuru {
+background-image:
+url("https://images.unsplash.com/photo-1547970810-dc1eac37d174?auto=format&fit=crop&w=900&q=85");
+}
+
+.mount-kenya {
+background-image:
+url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85");
+}
+
+.naivasha {
+background-image:
+url("https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=900&q=85");
+}
+
+.diani {
+background-image:
+url("https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=900&q=85");
+}
+
+/* ================= CTA ================= */
+
+.cta {
+padding: 80px 7%;
+background: #173d2b;
+color: white;
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+gap: 40px;
+}
+
+.cta h2 {
+color: white;
+max-width: 700px;
+}
+
+.cta p:not(.eyebrow) {
+color: #d8e1da;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+background: #102b1f;
+color: #dfe7e0;
+
+padding: 55px 7%;
+
+display: grid;
+grid-template-columns: 1.4fr 1fr 1.4fr 1fr;
+gap: 45px;
+}
+
+.footer-logo {
+color: white;
+}
+
+.footer-column h4 {
+color: white;
+margin-bottom: 13px;
+}
+
+.footer-column p {
+color: #b8c5bc;
+margin-top: 10px;
+}
+
+.footer-column a:not(.logo) {
+display: block;
+color: #dfe7e0;
+text-decoration: none;
+font-size: 0.92rem;
+margin: 7px 0;
+}
+
+.footer-column a:not(.logo):hover {
+color: #d6a04c;
+}
+
+.copyright {
+background: #0b2017;
+color: #9eaaa2;
+text-align: center;
+padding: 16px;
+font-size: 0.8rem;
+}
+
+/* ================= WHATSAPP ================= */
+
+.whatsapp-button {
+position: fixed;
+right: 20px;
+bottom: 20px;
+
+width: 56px;
+height: 56px;
+
+border-radius: 50%;
+
+background: #25d366;
+color: white;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+text-decoration: none;
+font-weight: 900;
+
+box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+
+z-index: 999;
+}
+
+.whatsapp-button:hover {
+transform: scale(1.06);
+}
+
+/* ================= TABLETS ================= */
+
+@media (max-width: 1000px) {
+
+.footer {
+grid-template-columns: 1fr 1fr;
+}
+
+.experience-grid {
+grid-template-columns: 1fr 1fr;
+}
+
+.destination-grid {
+grid-template-columns: 1fr 1fr;
+}
+
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 800px) {
+
+.site-header {
+height: 68px;
+padding: 0 5%;
+}
+
+.menu-toggle {
+display: block;
+}
+
+.navigation {
+display: none;
+
+position: absolute;
+left: 0;
+right: 0;
+top: 68px;
+
+background: white;
+
+flex-direction: column;
+align-items: stretch;
+
+padding: 15px 5%;
+
+gap: 0;
+
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+
+}
+
+.navigation.open {
+display: flex;
+}
+
+.navigation a {
+padding: 13px 0;
+border-bottom: 1px solid #eeeeee;
+}
+
+.hero {
+min-height: 620px;
+padding: 60px 7%;
+}
+
+.hero h1 {
+font-size: clamp(2.7rem, 13vw, 4.5rem);
+}
+
+.hero-text {
+font-size: 1rem;
+}
+
+.section {
+padding: 65px 6%;
+}
+
+.intro,
+.why-us {
+grid-template-columns: 1fr;
+gap: 35px;
+}
+
+.experience-grid {
+grid-template-columns: 1fr;
+}
+
+.destination-grid {
+grid-template-columns: 1fr 1fr;
+}
+
+.destination-card {
+height: 280px;
+}
+
+.section-heading {
+align-items: flex-start;
+flex-direction: column;
+}
+
+.why-image {
+min-height: 380px;
+}
+
+.cta {
+display: block;
+padding: 65px 6%;
+}
+
+.cta .btn {
+margin-top: 25px;
+}
+
+.footer {
+grid-template-columns: 1fr;
+gap: 30px;
+}
+
+}
+
+/* ================= SMALL PHONES ================= */
+
+@media (max-width: 500px) {
+
+.destination-grid {
+grid-template-columns: 1fr;
+}
+
+.destination-card {
+height: 330px;
+}
+
+.hero-buttons {
+flex-direction: column;
+align-items: stretch;
+}
+
+.hero-buttons .btn {
+text-align: center;
+}
+
+.whatsapp-button {
+right: 15px;
+bottom: 15px;
+}
+
+}
