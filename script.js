@@ -3,6 +3,7 @@
 // Main Website JavaScript
 // ==========================================
 
+
 // ==========================================
 // CURRENT YEAR
 // ==========================================
@@ -10,8 +11,9 @@
 const yearElement = document.getElementById("year");
 
 if (yearElement) {
-yearElement.textContent = new Date().getFullYear();
+  yearElement.textContent = new Date().getFullYear();
 }
+
 
 // ==========================================
 // MOBILE NAVIGATION
@@ -22,248 +24,271 @@ const navigation = document.getElementById("navigation");
 
 if (menuToggle && navigation) {
 
-menuToggle.addEventListener("click", () => {
+  menuToggle.addEventListener("click", () => {
 
-navigation.classList.toggle("open");
+    navigation.classList.toggle("open");
 
-const isOpen =
-  navigation.classList.contains("open");
+    const isOpen = navigation.classList.contains("open");
 
-menuToggle.setAttribute(
-  "aria-label",
-  isOpen
-    ? "Close navigation"
-    : "Open navigation"
-);
+    menuToggle.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation" : "Open navigation"
+    );
 
-});
+  });
 
-const navigationLinks =
-navigation.querySelectorAll("a");
 
-navigationLinks.forEach((link) => {
+  const navigationLinks = navigation.querySelectorAll("a");
 
-link.addEventListener("click", () => {
+  navigationLinks.forEach((link) => {
 
-  navigation.classList.remove("open");
+    link.addEventListener("click", () => {
 
-  menuToggle.setAttribute(
-    "aria-label",
-    "Open navigation"
-  );
+      navigation.classList.remove("open");
 
-});
+      menuToggle.setAttribute(
+        "aria-label",
+        "Open navigation"
+      );
 
-});
+    });
+
+  });
 
 }
+
 
 // ==========================================
 // SELECTED TOUR
 // ==========================================
 
-// When a visitor clicks "Enquire Now" or
-// "Enquire about this trip", the tour name
-// is temporarily saved.
+// Saves the selected tour when a visitor
+// arrives from a safari/tour enquiry button.
 
 const urlParams =
-new URLSearchParams(window.location.search);
+  new URLSearchParams(window.location.search);
 
 const selectedTour =
-urlParams.get("tour");
+  urlParams.get("tour");
 
 if (selectedTour) {
 
-sessionStorage.setItem(
-"selectedTour",
-selectedTour
-);
+  sessionStorage.setItem(
+    "selectedTour",
+    selectedTour
+  );
 
 }
+
 
 // ==========================================
 // CONTACT FORM TOUR FIELD
 // ==========================================
 
 const tourField =
-document.getElementById("tour");
+  document.getElementById("tour");
 
 if (tourField) {
 
-const savedTour =
-sessionStorage.getItem("selectedTour");
+  const savedTour =
+    sessionStorage.getItem("selectedTour");
 
-if (savedTour) {
+  if (savedTour) {
 
-const matchingOption =
-  Array.from(tourField.options).find(
-    (option) =>
-      option.value === savedTour
-  );
+    const matchingOption =
+      Array.from(tourField.options).find(
+        (option) =>
+          option.value === savedTour
+      );
 
-if (matchingOption) {
-  tourField.value = savedTour;
+    if (matchingOption) {
+
+      tourField.value = savedTour;
+
+    }
+
+  }
+
 }
 
-}
-
-}
 
 // ==========================================
 // CONTACT FORM
 // ==========================================
 
 const contactForm =
-document.getElementById("contactForm");
+  document.getElementById("contactForm");
 
 const formMessage =
-document.getElementById("formMessage");
+  document.getElementById("formMessage");
+
 
 if (contactForm) {
 
-contactForm.addEventListener(
-"submit",
-function (event) {
+  contactForm.addEventListener(
+    "submit",
+    function (event) {
 
-  event.preventDefault();
-
-  const name =
-    document.getElementById("name")?.value.trim();
-
-  const email =
-    document.getElementById("email")?.value.trim();
-
-  const phone =
-    document.getElementById("phone")?.value.trim();
-
-  const tour =
-    document.getElementById("tour")?.value;
-
-  const travelDate =
-    document.getElementById("travelDate")?.value;
-
-  const travellers =
-    document.getElementById("travellers")?.value;
-
-  const message =
-    document.getElementById("message")?.value.trim();
+      event.preventDefault();
 
 
-  if (!name || !email || !message) {
+      // ====================================
+      // GET FORM INFORMATION
+      // ====================================
 
-    if (formMessage) {
+      const name =
+        document.getElementById("name")?.value.trim();
 
-      formMessage.style.display = "block";
+      const email =
+        document.getElementById("email")?.value.trim();
 
-      formMessage.textContent =
-        "Please complete your name, email and trip details.";
+      const phone =
+        document.getElementById("phone")?.value.trim();
+
+      const tour =
+        document.getElementById("tour")?.value;
+
+      const travelDate =
+        document.getElementById("travelDate")?.value;
+
+      const travellers =
+        document.getElementById("travellers")?.value;
+
+      const message =
+        document.getElementById("message")?.value.trim();
+
+
+      // ====================================
+      // VALIDATE REQUIRED INFORMATION
+      // ====================================
+
+      if (!name || !email || !message) {
+
+        if (formMessage) {
+
+          formMessage.style.display = "block";
+
+          formMessage.textContent =
+            "Please complete your name, email and trip details.";
+
+        }
+
+        return;
+
+      }
+
+
+      // ====================================
+      // CREATE WHATSAPP MESSAGE
+      // ====================================
+
+      const messageParts = [
+
+        "Hello Kenya Beyond Travel & Tours,",
+
+        "",
+
+        "I would like to make a travel enquiry.",
+
+        "",
+
+        `Name: ${name}`,
+
+        `Email: ${email}`,
+
+        phone
+          ? `Phone / WhatsApp: ${phone}`
+          : null,
+
+        tour
+          ? `Trip / Experience: ${tour}`
+          : null,
+
+        travelDate
+          ? `Preferred Travel Date: ${travelDate}`
+          : null,
+
+        travellers
+          ? `Travellers: ${travellers}`
+          : null,
+
+        "",
+
+        "Trip Details:",
+
+        message
+
+      ].filter((item) => item !== null);
+
+
+      // ====================================
+      // ENCODE COMPLETE MESSAGE
+      // ====================================
+
+      const whatsappMessage =
+        encodeURIComponent(
+          messageParts.join("\n")
+        );
+
+
+      // ====================================
+      // WHATSAPP LINK
+      // ====================================
+
+      const whatsappURL =
+        "https://wa.me/254729029717?text=" +
+        whatsappMessage;
+
+
+      // ====================================
+      // SHOW MESSAGE
+      // ====================================
+
+      if (formMessage) {
+
+        formMessage.style.display = "block";
+
+        formMessage.textContent =
+          "Your enquiry is ready. Opening WhatsApp...";
+
+      }
+
+
+      // ====================================
+      // OPEN WHATSAPP
+      // ====================================
+
+      const whatsappWindow =
+        window.open(
+          whatsappURL,
+          "_blank"
+        );
+
+
+      // Fallback if the browser blocks
+      // the new window.
+
+      if (!whatsappWindow) {
+
+        window.location.href =
+          whatsappURL;
+
+      }
+
+
+      // ====================================
+      // CLEAR SAVED TOUR
+      // ====================================
+
+      sessionStorage.removeItem(
+        "selectedTour"
+      );
 
     }
-
-    return;
-
-  }
-
-
-  // ====================================
-  // CREATE WHATSAPP MESSAGE
-  // ====================================
-
-  let whatsappMessage =
-    "Hello Kenya Beyond Travel & Tours,%0A%0A";
-
-  whatsappMessage +=
-    "I would like to make a travel enquiry.%0A%0A";
-
-  whatsappMessage +=
-    "Name: " +
-    encodeURIComponent(name) +
-    "%0A";
-
-  whatsappMessage +=
-    "Email: " +
-    encodeURIComponent(email) +
-    "%0A";
-
-  if (phone) {
-
-    whatsappMessage +=
-      "Phone / WhatsApp: " +
-      encodeURIComponent(phone) +
-      "%0A";
-
-  }
-
-  if (tour) {
-
-    whatsappMessage +=
-      "Trip / Experience: " +
-      encodeURIComponent(tour) +
-      "%0A";
-
-  }
-
-  if (travelDate) {
-
-    whatsappMessage +=
-      "Preferred Travel Date: " +
-      encodeURIComponent(travelDate) +
-      "%0A";
-
-  }
-
-  if (travellers) {
-
-    whatsappMessage +=
-      "Travellers: " +
-      encodeURIComponent(travellers) +
-      "%0A";
-
-  }
-
-  whatsappMessage +=
-    "%0ATrip Details:%0A" +
-    encodeURIComponent(message);
-
-
-  // ====================================
-  // OPEN WHATSAPP
-  // ====================================
-
-  const whatsappURL =
-    "https://wa.me/254729029717?text=" +
-    whatsappMessage;
-
-
-  if (formMessage) {
-
-    formMessage.style.display = "block";
-
-    formMessage.textContent =
-      "Your enquiry is ready. Opening WhatsApp...";
-
-  }
-
-
-  window.open(
-    whatsappURL,
-    "_blank",
-    "noopener"
-  );
-
-
-  // Remove saved tour after the
-  // enquiry has been prepared.
-
-  sessionStorage.removeItem(
-    "selectedTour"
   );
 
 }
 
-);
-
-}
 
 // ==========================================
 // CLOSE MOBILE MENU WHEN CLICKING OUTSIDE
@@ -271,31 +296,30 @@ function (event) {
 
 document.addEventListener("click", (event) => {
 
-if (
-!navigation ||
-!menuToggle
-) {
-return;
-}
+  if (!navigation || !menuToggle) {
+    return;
+  }
 
-const clickedInsideNavigation =
-navigation.contains(event.target);
 
-const clickedMenuButton =
-menuToggle.contains(event.target);
+  const clickedInsideNavigation =
+    navigation.contains(event.target);
 
-if (
-!clickedInsideNavigation &&
-!clickedMenuButton
-) {
+  const clickedMenuButton =
+    menuToggle.contains(event.target);
 
-navigation.classList.remove("open");
 
-menuToggle.setAttribute(
-  "aria-label",
-  "Open navigation"
-);
+  if (
+    !clickedInsideNavigation &&
+    !clickedMenuButton
+  ) {
 
-}
+    navigation.classList.remove("open");
+
+    menuToggle.setAttribute(
+      "aria-label",
+      "Open navigation"
+    );
+
+  }
 
 });
